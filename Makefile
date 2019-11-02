@@ -77,3 +77,20 @@ release_major: bumpversion/release_major
 clean: pipenv/clean python/clean clean-build-harness
 	@exit 0
 .PHONY: clean
+
+stage:
+	git push heroku master
+.PHONY: stage
+
+config: config.txt
+	@cat config.txt
+.PHONY: config
+
+config.txt:
+	heroku config >> config.txt
+
+# Write .env to app
+# heroku config:set $(cat .env | sed '/^$/d; /#[[:print:]]*$/d')
+
+# Write app config to .env
+# heroku config | sed 's/:  */=/g; /^=/d' >> .env

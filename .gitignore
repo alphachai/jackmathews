@@ -109,3 +109,5 @@ venv
 staticfiles
 .env
 *.sqlite3
+*build-harness
+config.txt
