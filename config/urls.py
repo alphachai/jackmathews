@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.urls import include, path
 
 urlpatterns = [
-    path("_liveness", HttpResponse("We gucci.")),
+    path("_liveness", lambda: HttpResponse("We gucci.")),
     path("_readiness", include("health_check.urls")),
     path("admin/", admin.site.urls),
     path("", include("api.urls")),
