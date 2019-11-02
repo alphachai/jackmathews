@@ -12,7 +12,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import dj_database_url
 import django_heroku
+import sentry_sdk
 from decouple import config
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_dsn = config("SENTRY_DSN", default=None)
+if sentry_dsn:
+    sentry_sdk.init(sentry_dsn, integrations=[DjangoIntegration()])
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
