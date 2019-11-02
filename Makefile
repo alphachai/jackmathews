@@ -28,6 +28,14 @@ staticfiles:
 	$(WITH_PIPENV) python manage.py collectstatic --noinput
 .PHONY: staticfiles
 
+migrations:
+	$(WITH_PIPENV) python manage.py makemigrations
+.PHONY: migrations
+
+migrate:
+	$(WITH_PIPENV) python manage.py migrate
+.PHONY: migrate
+
 run: env staticfiles
 	$(WITH_PIPENV) heroku local web
 .PHONY: run
