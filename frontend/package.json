@@ -1,0 +1,22 @@
+{
+  "name": "jackmathews",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config=config/webpack.config.js --colors --profile",
+    "build-parallel": "./node_modules/.bin/parallel-webpack --config=config/webpack.config.js --colors -m=0 --profile --no-stats --",
+    "build:watch": "yarn build-parallel --watch",
+    "lint": "yarn run lint:css",
+    "lint:css": "yarn run lint:css:console; yarn run lint:css:file",
+    "lint:css:console": "./node_modules/.bin/sass-lint -c config/sass-lint.yml ../sherpa/**/frontend/**/*.scss -v",
+    "lint:css:file": "./node_modules/.bin/sass-lint -c config/sass-lint.yml -f checkstyle -o ../reports/css.checkstyle.xml ../sherpa/**/frontend/**/*.scss -v",
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "sass-lint": "*",
+    "sass-loader": "*",
+    "webpack": "*",
+  },
+  "dependencies": {
+  },
+}

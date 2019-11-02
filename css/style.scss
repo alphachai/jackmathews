@@ -193,16 +193,6 @@
 			z-index: 15 ;
 			border-bottom: 3px solid #EEE ;
 		}
-
-		& #title_cursor {
-			visibility: hidden ;
-			float: left ;
-			font-size: 21px; //18px ;
-			margin-top: 9px; //14px ;
-			color: #F5F5F5 ;
-			@include animation(blink 1s infinite step-end);
-			@include transition(all .5s ease);
-		}
 	}
 
 	/* Menu */
