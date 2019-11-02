@@ -1,12 +1,6 @@
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import path, re_path
 
 from jackmathews import views
 
-urlpatterns = [
-    path(
-        r"^$",
-        lambda request: HttpResponse("home"),
-        name="home",
-    ),
-]
+urlpatterns = [re_path(r"^$", lambda request: HttpResponse("home"), name="home")]

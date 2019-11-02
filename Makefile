@@ -24,23 +24,12 @@ frontend: $(NODE_MODULES)
 pre-build: frontend
 .PHONY: pre-build
 
-.env:
-	@read -p "Enter a port for your dev site: " DJANGO_DEV_PORT; \
-	@echo "# Development settings (NOT FOR PRODUCTION USE!)" >> .env; \
-	@echo "DJANGO_DEBUG=true" >> .env; \
-	@echo "DJANGO_SECRET_KEY=foobar" >> .env; \
-	@echo "" >> .env; \
-	@echo "# Port for dev site. Must end in a colon (:)." >> .env; \
-	@echo "DJANGO_DEV_PORT=$$DJANGO_DEV_PORT:" >> .env; \
-	@echo "" >> .env; \
-	echo "Wrote local development environment to .env" 1>&2; \
-
 staticfiles:
 	$(WITH_PIPENV) python manage.py collectstatic --noinput
 .PHONY: staticfiles
 
 run: env staticfiles
-	heroku local web
+	$(WITH_PIPENV) heroku local web
 .PHONY: run
 
 lint: python/lint
