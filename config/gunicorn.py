@@ -16,7 +16,7 @@
 #
 #
 # class GunicornLogger(BaseGunicornLogger):
-#     SERVICE = "everest.bucket_api"
+#     SERVICE = "jackmathews.com"
 #     LEVEL = env(
 #         "MINTEL_LOGGING_LEVEL", default=LogLevel.INFO, cast=LogLevel.__members__.get
 #     )

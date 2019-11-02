@@ -7,7 +7,7 @@ urlpatterns = [
     path("_liveness", lambda: HttpResponse("We gucci.")),
     path("_readiness", include("health_check.urls")),
     path("admin/", admin.site.urls),
-    path("", include("api.urls")),
+    path("", include("jackmathews.urls")),
 ]
 
 if settings.DEBUG:
