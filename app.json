@@ -1,18 +1,39 @@
 {
+  "name": "jackmathews.com",
+  "description": "Jack Mathews' personal portfolio and store."
+  "repository": "https://github.com/alphachai/jackmathews.com"
+  "stack": "heroku-18",
   "addons": [
-
-  ],
-  "buildpacks": [
-
+    {
+      "plan": "heroku-postgresql"
+    }
   ],
   "env": {
+    "GUNICORN_LOAD_METHOD": {
+      "value": "--preload"
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "value": "config.settings"
+    }
+    "DJANGO_SECRET_KEY": {
+      "description": "Used to provide cryptographic signing, and should be set to a unique, unpredictable value.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "2"
+    }
   },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
   "formation": {
   },
-  "name": "jackmathews.com",
   "scripts": {
+    "postdeploy": "make static",
   },
-  "stack": "heroku-18"
   "environments": {
     "test": {
       "scripts": {
@@ -20,5 +41,8 @@
         "test": "make lint test"
       }
     }
+  },
+  {
+    "success_url": "/_readiness"
   }
 }
