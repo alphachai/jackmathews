@@ -1,1 +1,1 @@
-web: gunicorn jackmathews.wsgi
+web: gunicorn config.wsgi
