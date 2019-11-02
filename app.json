@@ -9,9 +9,6 @@
     }
   ],
   "env": {
-    "GUNICORN_LOAD_METHOD": {
-      "value": "--preload"
-    },
     "DJANGO_SETTINGS_MODULE": {
       "value": "config.settings"
     }
