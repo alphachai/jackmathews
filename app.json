@@ -13,4 +13,12 @@
   "scripts": {
   },
   "stack": "heroku-18"
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "make init",
+        "test": "make lint test"
+      }
+    }
+  }
 }
