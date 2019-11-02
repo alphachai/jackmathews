@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.urls import include, path
 
 urlpatterns = [
-    path("_liveness", lambda request: HttpResponse("I'm alive.")),
-    path("_readiness", include("health_check.urls")),
+    path("_alive", lambda request: HttpResponse("I'm alive.")),
+    path("_ready", include("health_check.urls")),
     path("admin/", admin.site.urls),
     path("", include("jackmathews.urls")),
 ]

@@ -43,6 +43,6 @@
     }
   },
   {
-    "success_url": "/_readiness"
+    "success_url": "/_ready"
   }
 }
