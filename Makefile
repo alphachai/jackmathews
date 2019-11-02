@@ -35,8 +35,11 @@ pre-build: frontend
 	@echo "" >> .env; \
 	echo "Wrote local development environment to .env" 1>&2; \
 
-run: env
-	$(WITH_PIPENV) python manage.py collectstatic
+staticfiles:
+	$(WITH_PIPENV) python manage.py collectstatic --noinput
+.PHONY: staticfiles
+
+run: env staticfiles
 	heroku local web
 .PHONY: run
 
