@@ -76,6 +76,10 @@ remote_shell:
 	heroku run python manage.py shell
 .PHONY: remote_shell
 
+remote_dbshell:
+	heroku run python manage.py dbshell
+.PHONY: remote_dbshell
+
 # Write .env to app
 # heroku config:set $(cat .env | sed '/^$/d; /#[[:print:]]*$/d')
 
