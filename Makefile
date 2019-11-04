@@ -29,7 +29,7 @@ staticfiles:
 .PHONY: staticfiles
 
 migrations:
-	$(WITH_PIPENV) python manage.py makemigrations
+	$(WITH_PIPENV) python manage.py makemigrations jackmathews
 .PHONY: migrations
 
 migrate:
