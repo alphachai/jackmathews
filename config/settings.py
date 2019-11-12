@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "health_check",
     "health_check.db",
     "jackmathews",
-    # "jackmathews.apps.Config",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
