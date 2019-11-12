@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 urlpatterns = [
     path("_alive", lambda request: HttpResponse("I'm alive."), name="alive"),
     path("_health", include("health_check.urls"), name="health"),
     path("_ready", lambda request: HttpResponse("I'm ready."), name="ready"),
     path("admin/", admin.site.urls),
+    re_path(r"^accounts/", include("allauth.urls")),
     path("", include("jackmathews.urls")),
 ]
 

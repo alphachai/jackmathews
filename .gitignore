@@ -111,3 +111,4 @@ staticfiles
 *.sqlite3
 *build-harness
 config.txt
+frontend/node_modules*

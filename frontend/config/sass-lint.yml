@@ -1,0 +1,5 @@
+options:
+    config-file: ../node_modules/mintel-sass-lint/.sass-lint.yml
+    formatter: stylish
+files:
+    include: '**/*.s+(a|c)ss'
