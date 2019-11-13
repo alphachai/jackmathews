@@ -28,12 +28,6 @@ module.exports = {
                             name: '[name].css',
                         }
                     },
-                    // {
-                    //     loader: 'extract-loader'
-                    // },
-                    // {
-                    //     loader: 'css-loader?-url'
-                    // },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -76,5 +70,5 @@ module.exports = {
                 use: 'file-loader?name=[name].[ext]',
             },
         ],
-    },
+    }
 };

@@ -23,6 +23,7 @@
     "extract-loader": "*",
     "file-loader": "*",
     "node-sass": "*",
+    "normalize.css": "*",
     "parallel-webpack": "*",
     "postcss-loader": "*",
     "resolve-url-loader": "*",
