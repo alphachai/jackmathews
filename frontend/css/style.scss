@@ -4,6 +4,8 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700');
 @import url('http://fonts.googleapis.com/css?family=PT+Serif');
 
+// @include font-face('Helvetica Neue')
+
 @media all
 {
 	// Effects & Animations
@@ -16,41 +18,6 @@
 
 	@include keyframes(spin) {
 		100% { @include transform_rotate(360deg); }
-	}
-
-	@include keyframes(blink) {
-		50% { opacity:0 }
-		100% { opacity:1 }
-	}
-
-	@include keyframes(menu_wave) {
-		50% { margin-left: 10px; }//opacity: 0.5; }
-		100% { margin-left: 0px; }//opacity: 1; }
-	}
-
-	@include keyframes(glitch) {
-	    0% { transform: translate(0) }
-	    20% { transform: translate(-5px, 5px) }
-	    40% { transform: translate(-5px, -5px) }
-	    60% { transform: translate(5px, 5px) }
-	    80% { transform: translate(5px, -5px) }
-	    to { transform: translate(0) }
-	}
-
-	.ticker {
-		color: #fff;
-		margin: auto;
-	}
-
-	.ticker span {
-		display: inline-block;
-		transform: translateX(100%) scale(0.9);
-		transition: transform 500ms;
-	}
-
-	.ticker .done {
-		color: $color_consoleModeText ;
-		transform: translateX(0) scale(1);
 	}
 
 	// General
@@ -70,15 +37,6 @@
 	#column {
 		margin: 0 auto ;
 		width: 700px ;
-	}
-
-	#nav_curtain {
-		position: fixed ;
-		width: 100% ;
-		height: 100% ;
-		background-color: #000 ;
-		z-index: 3 ;
-		@include transition(all .5s ease);
 	}
 
 	#fadeout {
@@ -113,17 +71,6 @@
 	.hidden {
 		visibility: hidden !important ;
 		opacity: 0 !important ;
-	}
-
-	#particles {
-		position: fixed ;
-		top: 0 ;
-		left: 0 ;
-		width: 100% ;
-		height: 100% ;
-		min-width: 100% ;
-		z-index: -100 ;
-		opacity: 0.4 ;
 	}
 
 	// Loading animation
@@ -179,29 +126,11 @@
 		}
 	}
 
-	#preloader-tag {
-		position: absolute ;
-		top: 50% ;
-		left: 50% ;
-		margin-left: -100px ;
-		margin-top: 70px ;
-		width: 200px ;
-		text-align: center ;
-		font-family: 'Raleway', sans-serif ;
-		font-weight: 400 ;
-		font-size: 1.4em ;
-		text-transform: uppercase ;
-		color: #FFFFFF ;
-	}
-
 	// Header / Title
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	$header_height: 50px ;
-
 	header {
-		padding: 50px 0 0 ;
+		padding: 150px 0 0 ;
 		width: auto ;
-		height: $header_height ;
 		clear: both ;
 
 		& #logo {
@@ -209,21 +138,29 @@
 			float: left ;
 			z-index: 20 ;
 			position: relative ;
+			text-decoration: none ;
+			width: 100% ;
 		}
 
-		$titlePhoto_borderWidth: 0px ;
-		$titlePhoto_backgroundDiameter: ($header_height - ($titlePhoto_borderWidth*2)) ;
+		$titlePhoto_height: 150px ;
+		$titlePhoto_borderWidth: 3px ;
+		$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth*2)) ;
+
+		& #picture_wrapper {
+			width: $titlePhoto_height + ($titlePhoto_borderWidth * 2) ;
+			clear: both ;
+			margin: 0 auto;
+		}
 
 		& #picture_border {
-			float: left ;
 			padding: $titlePhoto_borderWidth ;
-			@include border-radius($header_height) ;
+			@include border-radius($titlePhoto_height) ;
 			z-index: 15 ;
-			border: 1px solid transparent ;
+			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder ;
 		}
 
 		& #picture {
-			@include border-radius($header_height/2) ;
+			@include border-radius($titlePhoto_height/2) ;
 			width: $titlePhoto_backgroundDiameter ;
 			height: $titlePhoto_backgroundDiameter ;
 			background-color: $color_titlePhoto ;
@@ -233,311 +170,14 @@
 
 		& #title {
 			color: $color_title ;
-			float: left ;
-			font-family: 'Open Sans', sans-serif ;
-			font-size: 30px ;
-			margin-left: 20px ;
-			margin-top: 4px ;
+			font-family: 'Helvetica Neue', sans-serif ;
+			font-size: 45px ;
 			font-weight: 300 ;
+			letter-spacing: 0.03em ;
 			z-index: 15 ;
-			border-bottom: 3px solid #EEE ;
-		}
-
-		& #title_cursor {
-			color: $color_consoleModeText ;
-			float: left ;
-			font-size: 26px ;
-			margin-top: 4px ;
-			visibility: hidden ;
-			@include animation(blink 0.7s infinite step-end);
-		}
-	}
-
-	.console_mode {
-		color: $color_consoleModeText ;
-
-		& #logo {
-			& #picture_border {
-				border: 1px solid rgba(42, 251, 41, 0.3) ;
-				//border-left: 1px solid rgba(42, 251, 41, 0.3) ;
-				//border-right: 1px solid rgba(42, 251, 41, 0.3) ;
-				//@include animation(spin 0.7s infinite linear);
-				& #picture {
-					opacity: 0 ;
-				}
-			}
-			& #title {
-				color: $color_consoleModeText ;
-				border-color: transparent ;
-			}
-			& #title_cursor {
-				visibility: visible ;
-			}
-		}
-
-		& nav {
-			& #menu ul li {
-				opacity: 1 ;
-				visibility: visible ;
-				@include animation(menu_wave 0.3s 1 linear);
-				&:nth-child(1) {
-					animation-delay: 0.1s
-				}
-				&:nth-child(2) {
-					animation-delay: 0.18s
-				}
-				&:nth-child(3) {
-					animation-delay: 0.26s
-				}
-			}
-			& .cross {
-				& .bun-top {
-					background-color: $color_consoleModeText ;
-				}
-				& .bun-bot {
-					background-color: $color_consoleModeText ;
-				}
-			}
-		}
-	}
-
-	// Menu
-	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-	$burger_height: 25px ;
-	$burger_margin: (($header_height - $burger_height)/2) ;
-
-	$menu_speed: .4s;
-	$menu_transition: all $menu_speed ease;
-
-	nav {
-		margin-top: $burger_margin;
-		position: relative ;
-		display: block ;
-
-		& #menu {
-			position: absolute ;
-			top: $burger_margin + $burger_height ;
-			right: 0 ;
-			width: 700px ;
-			text-align: right ;
-			opacity: 0 ;
-			visibility: hidden ;
-			display: table ;
-			z-index: 15 ;
-			padding-bottom: 5px ;
-			margin-left: -1px ;
-			@include transition($menu_transition);
-
-			& ul {
-				margin: 0 ;
-				padding: 0 ;
-				list-style-type: none ;
-				margin-left: 68px ;
-
-				& li {
-					display: block ;
-					text-align: left ;
-					cursor: pointer ;
-					clear: both ;
-					margin: 16px 0 ;
-					padding-left: 0px ;
-					opacity: 0 ;
-					@include transition(all .1s ease);
-
-					& a {
-						font-family: "Open Sans" ;
-						font-size: 26px ;
-						font-weight: 300 ;
-						text-decoration: none ;
-						color: $color_consoleModeText ;
-						text-align: left ;
-						text-transform: lowercase ;
-						@include transition(all .5s ease);
-					}
-
-					&:hover {
-						padding-left: 6px ;
-
-						&:before {
-							content: "> " ;
-						}
-
-						& a {
-
-						}
-					}
-				}
-			}
-		}
-
-		& .open {
-			opacity: 1 !important ;
-		}
-
-		& #burger {
-			float: right ;
-			cursor: pointer;
-			height: 25px;
-			width: 25px;
-			position: relative ;
-			@include transition(opacity .2s ease);
-			user-select: none ;
-			z-index: 20 ;
-
-			&:hover {
-				opacity: 0.5 ;
-			}
-		}
-
-		& .bun {
-			background: $color_menuPrimary ;
-			position: relative;
-			@include transition($menu_transition);
-			height: 2px ;
-			width: 25px;
-
-			&-top {
-				top: 0;
-			}
-
-			&-mid {
-				top: 8px;
-			}
-
-			&-bot {
-				top: 16px;
-			}
-		}
-
-		& .cross {
-			& .bun {
-				&-top {
-					background: $color_menuPrimary;
-		      top: 9px;
-		    	@include transform_rotate(45deg);
-				}
-				&-mid {
-					opacity: 0 ;
-				}
-				&-bot {
-					background: $color_menuPrimary;
-		      top: 5px;
-		      @include transform_rotate(-45deg);
-				}
-			}
-		}
-	}
-
-	// Timeline
-	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	.timeline {
-		margin-top: 20px ;
-		//margin-left: 24px ;
-		margin-bottom: 20px ;
-		@include transition(all .5s ease);
-		@include clearfix;
-
-		& .line-item {
-			float: left ;
 			clear: both ;
-			position: relative ;
-			//border-left: 1px solid #000 ;
-			//padding-left: 20px ;
-			margin: 20px 0 ;
-			width: 100% ;
-
-			&:after {
-				width: 100px ;
-				clear: both ;
-			}
-
-			$emphasis_size: 11px;
-			& .emphasis {
-				position: absolute ;
-				top: 58px ;
-				left: -13px ;
-				width: $emphasis_size ;
-				height: $emphasis_size ;
-				border: 6px solid #FFF ;
-				background-color: #E7E7E7 ;
-				@include border-radius($emphasis_size) ;
-			}
-			& .event-title {
-				color: #272727 ;
-				font-size: 40px ;
-				font-weight: 300 ;
-				width: 100% ;
-				text-align: left ;
-				text-transform: uppercase ;
-			}
-			& .event-date {
-				color: #AAA ;
-				font-size: 14px ;
-				font-weight: 300 ;
-				width: 100% ;
-				text-align: left ;
-				text-transform: uppercase ;
-				margin: auto ;
-				& span {
-					//display: inline-block;
-					transform: translateX(100%) scale(0.9);
-					transition: transform 500ms;
-				}
-				.done {
-					transform: translateX(0) scale(1) ;
-					color: #333 ;
-				}
-			}
-		}
-	}
-
-	.terminal {
-		@include transition(all .5s ease);
-		font-family: "Courier New", monospace;
-		height: 300px ;
-		//min-height: 200px ;
-		//max-height: 300px ;
-		overflow-y: scroll ;
-		@include border-radius(3px) ;
-		border: 1px solid #EEE ;
-		margin: 40px 0 ;
-		padding: 10px ;
-
-
-		/*& > .line:first-of-type {
-			margin-top: 120px ;
-		}*/
-
-		& .blank {
-			width: 1px ;
-			height: 18px ;
-		}
-
-		& .line {
-			clear: both;
-
-			& .meta {
-				&::after {
-					font-weight: bold ;
-					content: " $ ";
-				}
-			}
-			& .cmd {
-				display: inline-block ;
-				border: 0px ;
-				width: auto ;
-				outline: none ;
-				-webkit-appearance: none ;
-			}
-			& .cursor::after {
-				content: "█" ;
-				//display: block ;
-				//width: 10px ;
-				//height: 18px ;
-				//background: #000 ;
-				@include animation(blink 1s infinite step-end);
-			}
+			text-align: center ;
+			margin-top: 30px ;
 		}
 	}
 
@@ -621,11 +261,20 @@
 // Footer
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 footer {
-	font-family: "PT Serif", serif ;
-	font-size: 16px ;
+	font-size: 14px ;
+	font-weight: 300 ;
+	letter-spacing: 0.05em;
 	margin-bottom: 75px ;
 	color: $color_footerText ;
 	text-align: right ;
+
+	& a {
+		color: $color_defaultFontColor ;
+	}
+}
+
+@media (prefers-color-scheme: dark)
+{
 }
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
