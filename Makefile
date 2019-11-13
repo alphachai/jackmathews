@@ -21,12 +21,12 @@ frontend: $(NODE_MODULES)
 .PHONY: frontend
 
 
-frontend-dev: $(NODE_MODULES)
+frontend-watch: $(NODE_MODULES)
 	set -ex \
 		&& ( \
 			cd frontend \
 			&& yarn --pure-lockfile --no-progress \
-			&& yarn run build:dev \
+			&& yarn run build:watch \
 			&& yarn autoclean \
 		)
 .PHONY: frontend
@@ -47,7 +47,7 @@ migrate:
 	$(WITH_PIPENV) python manage.py migrate
 .PHONY: migrate
 
-run: env staticfiles frontend
+run: env staticfiles
 	$(WITH_PIPENV) heroku local web
 .PHONY: run
 

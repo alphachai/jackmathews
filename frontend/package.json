@@ -4,9 +4,9 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack --config=config/webpack.config.js --colors --profile",
     "build-parallel": "./node_modules/.bin/parallel-webpack --config=config/webpack.config.js --colors -m=0 --profile --no-stats --",
-    "build:watch": "yarn build-parallel --watch",
+    "build:watch": "yarn build --watch --env=prod",
     "build:dev": "yarn build:watch --env=dev",
-    "build:prod": "yarn build --env=prod",
+    "build:prod": "yarn build-parallel --env=prod",
     "lint": "yarn run lint:css",
     "lint:css": "yarn run lint:css:console; yarn run lint:css:file",
     "lint:css:console": "./node_modules/.bin/sass-lint -c config/sass-lint.yml css/*.scss -v",
@@ -14,12 +14,16 @@
   },
   "author": "Charlie Mathews",
   "license": "UNLICENSED",
+  "dependencies": {
+    "normalize.css": "*"
+  },
   "devDependencies": {
     "autoprefixer": "*",
     "css-loader": "*",
     "extract-loader": "*",
     "file-loader": "*",
     "node-sass": "*",
+    "parallel-webpack": "*",
     "postcss-loader": "*",
     "resolve-url-loader": "*",
     "sass-lint": "*",

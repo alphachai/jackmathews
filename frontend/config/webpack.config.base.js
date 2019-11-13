@@ -16,7 +16,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
+                test: /\.css$/i,
+                use: ['css-loader']
+            },
+            {
+                test: /\.s[ac]ss$/i,
                 use: [
                     {
                         loader: 'file-loader',
@@ -24,12 +28,12 @@ module.exports = {
                             name: '[name].css',
                         }
                     },
-                    {
-                        loader: 'extract-loader'
-                    },
-                    {
-                        loader: 'css-loader?-url'
-                    },
+                    // {
+                    //     loader: 'extract-loader'
+                    // },
+                    // {
+                    //     loader: 'css-loader?-url'
+                    // },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -46,7 +50,7 @@ module.exports = {
                         loader: 'resolve-url-loader',
                         options: {
                             keepQuery: true,
-                            sourceMap: true,
+                            sourceMap: false,
                         },
                     },
                     {
@@ -54,9 +58,11 @@ module.exports = {
                         options: {
                             sassOptions: {
                                 indentWidth: 4,
-                                includePaths: [path.join(paths.frontendDir, 'node_modules')],
+                                includePaths: [
+                                    path.join(paths.frontendDir, 'node_modules')
+                                ],
                             },
-                            sourceMap: true, // Required for resolve-url-loader
+                            sourceMap: false, // Required for resolve-url-loader
                         },
                     }
                 ]
