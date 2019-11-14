@@ -10,11 +10,24 @@ NODE_MODULES = frontend/node_modules
 $(NODE_MODULES):
 	@cd frontend && yarn install --pure-lockfile --non-interactive
 
-frontend: $(NODE_MODULES)
+frontend/yarn.lock:
 	set -ex \
 		&& ( \
 			cd frontend \
-			&& yarn --pure-lockfile --no-progress \
+			&& yarn \
+		)
+
+delete-lock:
+	rm frontend/yarn.lock
+.PHONY: delete-lock
+
+lock: delete-lock frontend/yarn.lock
+.PHONY: lock
+
+frontend: frontend/yarn.lock $(NODE_MODULES)
+	set -ex \
+		&& ( \
+			cd frontend \
 			&& yarn run build:prod \
 			&& yarn autoclean \
 		)
