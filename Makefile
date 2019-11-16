@@ -34,11 +34,10 @@ frontend: frontend/yarn.lock $(NODE_MODULES)
 .PHONY: frontend
 
 
-frontend-watch: $(NODE_MODULES)
+frontend-watch: frontend/yarn.lock $(NODE_MODULES)
 	set -ex \
 		&& ( \
 			cd frontend \
-			&& yarn --pure-lockfile --no-progress \
 			&& yarn run build:watch \
 			&& yarn autoclean \
 		)
