@@ -3,8 +3,8 @@
 @import 'colors';
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700');
 @import url('http://fonts.googleapis.com/css?family=PT+Serif');
+@import url('http://fonts.googleapis.com/css?family=Barlow');
 
-// @include font-face('Helvetica Neue')
 
 @media all
 {
@@ -23,29 +23,29 @@
 	// General
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	html, body {
-		width: 100% ;
-		height: 100% ;
-		color: $color_defaultFontColor ;
+		width: 100%;
+		height: 100%;
+		color: $color_defaultFontColor;
 		@include transition(all .5s ease);
-		font-family: "Open Sans", sans-serif ;
+		font-family: "Open Sans", sans-serif;
 	}
 
 	h2 {
-		margin: 0 ;
+		margin: 0;
 	}
 
 	#column {
-		margin: 0 auto ;
-		width: 700px ;
+		margin: 0 auto;
+		width: 700px;
 	}
 
 	#fadeout {
-	    position: fixed ;
-		z-index: 2 ;
-	    bottom: 0em ;
-		opacity: 1 ;
-	    width: 100% ;
-	    height: 4em ;
+	    position: fixed;
+		z-index: 2;
+	    bottom: 0em;
+		opacity: 1;
+	    width: 100%;
+	    height: 4em;
 	    background: -webkit-linear-gradient(
 	        rgba(255, 255, 255, 0) 0%,
 	        rgba(255, 255, 255, 1) 100%
@@ -69,46 +69,46 @@
 	}
 
 	.hidden {
-		visibility: hidden !important ;
-		opacity: 0 !important ;
+		visibility: hidden !important;
+		opacity: 0 !important;
 	}
 
 	// Loading animation
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	.off {
-		-moz-animation-name: none !important ;
-		-webkit-animation-name: none !important ;
-		-ms-animation-name: none !important ;
-		animation-name: none !important ;
+		-moz-animation-name: none !important;
+		-webkit-animation-name: none !important;
+		-ms-animation-name: none !important;
+		animation-name: none !important;
 	}
 
 	#loading {
-		position: fixed ;
-		top: 0 ;
-		left: 0 ;
-		width: 100% ;
-		height: 100% ;
-		z-index: 200 ;
-		background: $color_loadingBackground ;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 200;
+		background: $color_loadingBackground;
 	}
 
 	#preloader-wrap {
-		position: absolute ;
-		top: 50% ;
-		left: 50% ;
+		position: absolute;
+		top: 50%;
+		left: 50%;
 		@include transform_translate(-50%, -50%);
 	}
 
 	#preloader {
-		position: absolute ;
-		top: 50% ;
-		left: 50% ;
-		margin-top: -15px ;
-		margin-left: -15px ;
-		width: 30px ;
-		height: 30px ;
-		background: $color_preloadSecondary ;
-		@include border-radius(50px) ; //border-radius: 50px ;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -15px;
+		margin-left: -15px;
+		width: 30px;
+		height: 30px;
+		background: $color_preloadSecondary;
+		@include border-radius(50px); //border-radius: 50px;
 		@include animation(spin 0.5s infinite linear);
 
 		&:after {
@@ -119,7 +119,7 @@
 			border-bottom:2px solid $color_preloadPrimary;
 			border-left:2px solid transparent;
 			border-right:2px solid transparent;
-			@include border-radius(50px) ; //border-radius: 50px ;
+			@include border-radius(50px); //border-radius: 50px;
 			content:'';
 			top:-12px;
 			left:-12px;
@@ -129,128 +129,179 @@
 	// Header / Title
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	header {
-		padding: 150px 0 0 ;
-		width: auto ;
-		clear: both ;
+		padding: 150px 0 0;
+		width: auto;
+		clear: both;
 
 		& #logo {
-			display: block ;
-			float: left ;
-			z-index: 20 ;
-			position: relative ;
-			text-decoration: none ;
-			width: 100% ;
+			display: block;
+			float: left;
+			z-index: 20;
+			position: relative;
+			text-decoration: none;
+			width: 100%;
 		}
 
-		$titlePhoto_height: 150px ;
-		$titlePhoto_borderWidth: 3px ;
-		$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth*2)) ;
+		$titlePhoto_height: 155px;
+		$titlePhoto_borderWidth: 2px;
+		$titlePhoto_padding: 5px;
+		$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
 
 		& #picture_wrapper {
-			width: $titlePhoto_height + ($titlePhoto_borderWidth * 2) ;
-			clear: both ;
+			width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
+			clear: both;
 			margin: 0 auto;
 		}
 
 		& #picture_border {
-			padding: $titlePhoto_borderWidth ;
-			@include border-radius($titlePhoto_height) ;
-			z-index: 15 ;
-			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder ;
+			padding: $titlePhoto_padding;
+			@include border-radius($titlePhoto_height);
+			z-index: 15;
+			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder;
 		}
 
 		& #picture {
-			@include border-radius($titlePhoto_height/2) ;
-			width: $titlePhoto_backgroundDiameter ;
-			height: $titlePhoto_backgroundDiameter ;
-			background-color: $color_titlePhoto ;
-			background: url('../avatar.png') ;
-			background-size: cover ;
+			@include border-radius($titlePhoto_height/2);
+			width: $titlePhoto_backgroundDiameter;
+			height: $titlePhoto_backgroundDiameter;
+			background-color: $color_titlePhoto;
+			background: url('../avatar.png');
+			background-size: cover;
 		}
 
 		& #title {
-			color: $color_title ;
-			font-family: 'Helvetica Neue', sans-serif ;
-			font-size: 45px ;
-			font-weight: 300 ;
-			letter-spacing: 0.03em ;
-			z-index: 15 ;
-			clear: both ;
-			text-align: center ;
-			margin-top: 30px ;
+			color: $color_title;
+			// font-family: 'Helvetica Neue', sans-serif;
+			font-family: 'Barlow', sans-serif;
+			font-size: 32px;
+			font-weight: 600;
+			// letter-spacing: 0.03em;
+			z-index: 15;
+			clear: both;
+			text-align: center;
+			margin-top: 30px;
+		}
+	}
+
+	// Social
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	// https://github.com/Automattic/social-logos
+	// https://gist.github.com/mrmartineau/314b01b300fa20a5a820a4d6889ffd42
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	$icon_size : 20px;
+
+	#social_wrap {
+		width: 100%;
+		clear: both;
+	}
+
+	#social {
+
+		a {
+			background-color: rgba(#fff, .2);
+			padding: 3px;
+			border-radius: 50%;
+			width: $icon_size;
+			height: $icon_size;
+			display: inline-block;
+			color: #000;
+
+			.icon {
+				max-width: 100%;
+				vertical-align: top;
+				width: $icon_size;
+				height: $icon_size;
+			}
+
+			&:hover {
+				background-color: rgba(#fff, .7);
+
+				.icon {
+					color: #DDD;
+				}
+				.icon_youtube {
+					color: $color_youtube;
+				}
+				.icon_instagram {
+					color: $color_instagram;
+				}
+				.icon_linkedin {
+					color: $color_linkedin;
+				}
+			}
 		}
 	}
 
 	// Content
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	.content {
-		clear: both ;
-		padding: 50px 0 ;
-		width: auto ;
-		margin: auto ;
-		opacity: 1 ;
+		clear: both;
+		padding: 50px 0;
+		width: auto;
+		margin: auto;
+		opacity: 1;
 		@include transition(all .5s ease);
 	}
 
 	.content_hidden {
-		opacity: 0 !important ;
+		opacity: 0 !important;
 	}
 
 	article {
-		font-family: 'Open Sans', serif ;
-		clear: both ;
-		margin-bottom: 10px ;
+		font-family: 'Open Sans', serif;
+		clear: both;
+		margin-bottom: 10px;
 
 		& .meta {
-			text-transform: uppercase ;
-			color: #A1A1A1 ;
-			font-size: 14px ;
-			width: 100% ;
-			text-align: left ;
-			margin-bottom: 35px ;
+			text-transform: uppercase;
+			color: #A1A1A1;
+			font-size: 14px;
+			width: 100%;
+			text-align: left;
+			margin-bottom: 35px;
 		}
 
 		& .meta-background {
-			width: 100% ;
-			height: 290px ;
+			width: 100%;
+			height: 290px;
 			background-size: cover;
-			margin-bottom: 25px ;
+			margin-bottom: 25px;
 		}
 
 		& > h2 {
-			font-size: 44px ;
-			font-weight: 700 ;
-			letter-spacing: -0.04em ;
-			line-height: 1em ;
-			margin-left: -4px ;
-			margin-bottom: 10px ;
-			//margin-top: 72px ;
-			color: #222222 ;
+			font-size: 44px;
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			line-height: 1em;
+			margin-left: -4px;
+			margin-bottom: 10px;
+			//margin-top: 72px;
+			color: #222222;
 		}
 
 		& .body {
-			clear: both ;
-			font-family: inherit ;
+			clear: both;
+			font-family: inherit;
 
 			& p {
-				font-family: 'PT Serif', serif ;
-				font-weight: 400 ;
-				font-size: 21px ;
-				line-height: 35px ;
-				color: rgba(0,0,0,.8) ; //#2E2E2E ;
+				font-family: 'PT Serif', serif;
+				font-weight: 400;
+				font-size: 21px;
+				line-height: 35px;
+				color: rgba(0,0,0,.8); //#2E2E2E;
 			}
 
 			& blockquote {
 				& h3 {
-					font-size: 32px ;
-					/*line-height: 1.5em ;*/
-					margin-bottom: 10px ;
-					color: #2E2E2E ;
+					font-size: 32px;
+					/*line-height: 1.5em;*/
+					margin-bottom: 10px;
+					color: #2E2E2E;
 				}
 
 				& p {
-					margin-top: 0 ;
-					color: #A1A1A1 ;
+					margin-top: 0;
+					color: #A1A1A1;
 				}
 
 			}
@@ -261,20 +312,20 @@
 // Footer
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 footer {
-	font-size: 14px ;
-	font-weight: 300 ;
+	font-size: 14px;
+	font-weight: 300;
 	letter-spacing: 0.05em;
-	margin-bottom: 75px ;
-	color: $color_footerText ;
-	text-align: right ;
-	text-transform: uppercase ;
+	margin-bottom: 75px;
+	color: $color_footerText;
+	text-align: right;
+	text-transform: uppercase;
 
 	& a {
-		color: $color_defaultFontColor ;
+		color: $color_defaultFontColor;
 	}
 }
 
-@media (prefers-color-scheme: dark)
+@media (prefers-color_scheme: dark)
 {
 }
 
@@ -285,72 +336,72 @@ footer {
 @media (max-width: 800px)
 {
 	#column {
-		width: 500px ;
+		width: 500px;
 	}
 
 	nav #menu {
-		width: 500px ;
+		width: 500px;
 	}
 
 	article > h2 {
-		font-size: 35px ;
-		//margin-top: 50px ;
+		font-size: 35px;
+		//margin-top: 50px;
 	}
 
 	article .body blockquote h3 {
-		font-size: 26px ;
-		line-height: 1.5em ;
+		font-size: 26px;
+		line-height: 1.5em;
 	}
 
 	article .body blockquote p {
-		font-size: 18px ;
+		font-size: 18px;
 	}
 }
 
 @media (max-width: 570px)
 {
 	header {
-		padding: 20px 0 0 ;
+		padding: 20px 0 0;
 
 		& #title {
-			//font-size: 20px ;
-			//margin-left: 15px ;
-			//margin-top: 11px ;
-			//border-bottom: none ;
+			//font-size: 20px;
+			//margin-left: 15px;
+			//margin-top: 11px;
+			//border-bottom: none;
 		}
 	}
 
 	#column {
-		width: auto ;
-		padding: 30px ;
+		width: auto;
+		padding: 30px;
 	}
 
 	nav {
-		//float: right ;
+		//float: right;
 	}
 
 	nav #menu {
-		position: absolute ;
-		left: 0 ;
-		//border: 1px solid $color_menuBorder ;
-		width: auto ;
-		//top: 30px ;
-		z-index: 15 ;
-		padding-bottom: 0px ;
+		position: absolute;
+		left: 0;
+		//border: 1px solid $color_menuBorder;
+		width: auto;
+		//top: 30px;
+		z-index: 15;
+		padding-bottom: 0px;
 
 		& ul {
-			//margin-left: auto ;
+			//margin-left: auto;
 
 			& li {
-				//padding: 5px 40px ;
+				//padding: 5px 40px;
 
 				&:hover {
-					//padding-left: 46px ;
-					//padding-right: 34px ;
-					//border-left: 0px ;
+					//padding-left: 46px;
+					//padding-right: 34px;
+					//border-left: 0px;
 
 					&:before {
-						//content: "" ;
+						//content: "";
 					}
 				}
 			}
@@ -358,49 +409,49 @@ footer {
 	}
 
 	article .meta-background {
-		height: 150px ;
-		margin-bottom: 15px ;
+		height: 150px;
+		margin-bottom: 15px;
 	}
 
 	article > h2 {
-		font-size: 24px ;
-		//margin-top: 20px ;
+		font-size: 24px;
+		//margin-top: 20px;
 	}
 
 	article .meta {
-		margin-bottom: 20px ;
+		margin-bottom: 20px;
 	}
 
 	article .body > p {
-		font-size: 18px ;
-		line-height: 30px ;
+		font-size: 18px;
+		line-height: 30px;
 	}
 
 	article .body blockquote h3 {
-		font-size: 22px ;
-		line-height: 1.2em ;
+		font-size: 22px;
+		line-height: 1.2em;
 	}
 }
 
 @media (max-width: 450px)
 {
 	#column {
-		width: auto ;
-		padding: 10px ;
+		width: auto;
+		padding: 10px;
 	}
 
 	article .body > p {
-		font-size: 16px ;
-		line-height: 24px ;
+		font-size: 16px;
+		line-height: 24px;
 	}
 
 	article .body blockquote h3 {
-		font-size: 18px ;
-		line-height: 1.0em ;
+		font-size: 18px;
+		line-height: 1.0em;
 	}
 
 	article .body blockquote p {
-		font-size: 14px ;
+		font-size: 14px;
 	}
 }
 
@@ -408,6 +459,6 @@ footer {
 @media (max-width: 290px)
 {
 	article > h2 {
-		font-size: 18px ;
+		font-size: 18px;
 	}
 }
