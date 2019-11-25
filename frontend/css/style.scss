@@ -5,6 +5,12 @@
 @import url('http://fonts.googleapis.com/css?family=PT+Serif');
 @import url('http://fonts.googleapis.com/css?family=Barlow');
 
+// SOURCE: https://css-tricks.com/snippets/css/clear-fix/
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 @media all
 {
@@ -36,7 +42,7 @@
 
 	#column {
 		margin: 0 auto;
-		width: 700px;
+		width: 900px;
 	}
 
 	#fadeout {
@@ -134,11 +140,11 @@
 		clear: both;
 
 		& #logo {
-			display: block;
-			float: left;
-			z-index: 20;
-			position: relative;
-			text-decoration: none;
+			// display: block;
+			// float: left;
+			// z-index: 20;
+			// position: relative;
+			// text-decoration: none;
 			width: 100%;
 		}
 
@@ -169,76 +175,94 @@
 			background-size: cover;
 		}
 
-		& #title {
-			color: $color_title;
-			// font-family: 'Helvetica Neue', sans-serif;
-			font-family: 'Barlow', sans-serif;
-			font-size: 32px;
-			font-weight: 600;
-			// letter-spacing: 0.03em;
-			z-index: 15;
-			clear: both;
-			text-align: center;
-			margin-top: 30px;
-		}
+    & #title {
+      clear: both;
+      width: 100%;
+			margin: 30px auto 0;
+      text-align: center;
+
+      & span {
+  			color: $color_title;
+  			// font-family: 'Helvetica Neue', sans-serif;
+  			font-family: 'Barlow', sans-serif;
+  			font-size: 32px;
+  			font-weight: 600;
+  			// letter-spacing: 0.03em;
+  			// z-index: 15;
+  		}
+    }
 	}
 
 	// Social
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	// https://github.com/Automattic/social-logos
-	// https://gist.github.com/mrmartineau/314b01b300fa20a5a820a4d6889ffd42
-	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	$icon_size : 20px;
+	// SOURCE: https://github.com/Automattic/social-logos
+	// SOURCE: https://gist.github.com/mrmartineau/314b01b300fa20a5a820a4d6889ffd42
 
-	#social_wrap {
-		width: 100%;
-		clear: both;
-	}
+	$icon_size : 20px;
+  $icon_padding : 4px;
+  $n_social_icons : 3;
 
 	#social {
+		width: 100%;
+		clear: both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 
-		a {
-			background-color: rgba(#fff, .2);
-			padding: 3px;
-			border-radius: 50%;
-			width: $icon_size;
-			height: $icon_size;
-			display: inline-block;
-			color: #000;
+    #icons {
+  		margin: 0 auto;
+      display: inline-block;
+      //width: ($icon_size + ($icon_padding * 2)) * $n_social_icons;
 
-			.icon {
-				max-width: 100%;
-				vertical-align: top;
-				width: $icon_size;
-				height: $icon_size;
-			}
+  		.icon_wrap {
+  			// background-color: rgba(#fff, .2);
+        // border-radius: 50%;
+        float: left;
+  			padding: 0 $icon_padding;
+  			width: $icon_size;
+  			height: $icon_size;
 
-			&:hover {
-				background-color: rgba(#fff, .7);
+  			a {
+  				display: inline-block;
+  				color: #000;
 
-				.icon {
-					color: #DDD;
-				}
-				.icon_youtube {
-					color: $color_youtube;
-				}
-				.icon_instagram {
-					color: $color_instagram;
-				}
-				.icon_linkedin {
-					color: $color_linkedin;
-				}
-			}
-		}
+  				.icon {
+  					max-width: 100%;
+  					vertical-align: top;
+  					width: $icon_size;
+  					height: $icon_size;
+  				}
+
+  				&:hover {
+  					background-color: rgba(#fff, .7);
+
+  					.icon {
+  						color: #DDD;
+  					}
+  					.icon_youtube {
+  						color: $color_youtube;
+  					}
+  					.icon_instagram {
+  						color: $color_instagram;
+  					}
+  					.icon_linkedin {
+  						color: $color_linkedin;
+  					}
+  				}
+  			}
+  		}
+  	}
 	}
+
+
 
 	// Content
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	.content {
 		clear: both;
-		padding: 50px 0;
 		width: auto;
-		margin: auto;
+		margin: 50px 0 0;
 		opacity: 1;
 		@include transition(all .5s ease);
 	}
@@ -246,6 +270,19 @@
 	.content_hidden {
 		opacity: 0 !important;
 	}
+
+  .grid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    & .item {
+      width: 280px;
+      height: 280px;
+      margin: 10px ;
+      background-color: #EEE;
+    }
+  }
 
 	article {
 		font-family: 'Open Sans', serif;
@@ -307,22 +344,28 @@
 			}
 		}
 	}
-}
 
-// Footer
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-footer {
-	font-size: 14px;
-	font-weight: 300;
-	letter-spacing: 0.05em;
-	margin-bottom: 75px;
-	color: $color_footerText;
-	text-align: right;
-	text-transform: uppercase;
+  // Footer
+  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  footer {
+  	font-size: 14px;
+  	font-weight: 300;
+  	letter-spacing: 0.05em;
+    margin-top: 20px;
+  	margin-bottom: 75px;
+  	color: $color_footerText;
 
-	& a {
-		color: $color_defaultFontColor;
-	}
+
+  	& p {
+      float: right;
+      clear: both;
+      margin: 2px 0;
+    }
+
+  	& a {
+  		color: $color_defaultFontColor;
+  	}
+  }
 }
 
 @media (prefers-color_scheme: dark)
@@ -333,15 +376,23 @@ footer {
 /* 	Everything below this line adjusts the default
 		styles according to changes in viewport size. 	*/
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-@media (max-width: 800px)
+@media (max-width: 900px)
 {
 	#column {
-		width: 500px;
+		width: 600px;
 	}
 
-	nav #menu {
-		width: 500px;
-	}
+  .grid {
+    & .item {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+
+	// nav #menu {
+	// 	width: 500px;
+	// }
 
 	article > h2 {
 		font-size: 35px;
@@ -358,7 +409,7 @@ footer {
 	}
 }
 
-@media (max-width: 570px)
+@media (max-width: 600px)
 {
 	header {
 		padding: 20px 0 0;
@@ -373,40 +424,16 @@ footer {
 
 	#column {
 		width: auto;
-		padding: 30px;
+		padding: 0 15px;
 	}
 
-	nav {
-		//float: right;
-	}
-
-	nav #menu {
-		position: absolute;
-		left: 0;
-		//border: 1px solid $color_menuBorder;
-		width: auto;
-		//top: 30px;
-		z-index: 15;
-		padding-bottom: 0px;
-
-		& ul {
-			//margin-left: auto;
-
-			& li {
-				//padding: 5px 40px;
-
-				&:hover {
-					//padding-left: 46px;
-					//padding-right: 34px;
-					//border-left: 0px;
-
-					&:before {
-						//content: "";
-					}
-				}
-			}
-		}
-	}
+  .grid {
+    & .item {
+      width: 150px;
+      height: 150px;
+      margin: 8px ;
+    }
+  }
 
 	article .meta-background {
 		height: 150px;
@@ -435,11 +462,6 @@ footer {
 
 @media (max-width: 450px)
 {
-	#column {
-		width: auto;
-		padding: 10px;
-	}
-
 	article .body > p {
 		font-size: 16px;
 		line-height: 24px;
@@ -455,6 +477,16 @@ footer {
 	}
 }
 
+@media (max-width: 362px)
+{
+  .grid {
+    & .item {
+      width: 120px;
+      height: 120px;
+      margin: 5px ;
+    }
+  }
+}
 
 @media (max-width: 290px)
 {

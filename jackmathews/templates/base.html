@@ -23,21 +23,17 @@ All code, images, and content are the intellectual property of Charlie Mathews (
 
 <div id="column">
     <header>
-      <a id="logo" href="#">
+      <div id="logo" class="clear">
         <div id="picture_wrapper"><div id="picture_border"><div id="picture"></div></div></div>
-        <div id="title">JACK MATHEWS</div>
-      </a>
-
+        <div id="title"><span>JACK MATHEWS</span></div>
+      </div>
       {% include "includes/nav.html" %}
-
       {% include "includes/social.html" %}
     </header>
 
-    <section class="content">
-        {% block pagecontent %}
-        Oops! You forgot to include a template file.
-        {% endblock %}
-    </section>
+    {% block pagecontent %}
+    Oops! You forgot to include a template file.
+    {% endblock %}
 
     {% include "includes/footer.html" %}
 </div> <!-- end of #column -->
