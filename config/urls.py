@@ -9,13 +9,14 @@ urlpatterns = [
     path("_health", include("health_check.urls"), name="health"),
     path("_ready", lambda request: HttpResponse("I'm ready."), name="ready"),
     path("admin/", admin.site.urls),
-    re_path(r"^accounts/", include("allauth.urls")),
+    # re_path(r"^accounts/", include("allauth.urls")),
     path(r"^favicon.ico", lambda x: HttpResponseRedirect(static("static/img/favicon.ico"))),
     path(
         r"^robots.txt",
         lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"),
         name="robots_file",
     ),  # noqa: E501
+    path("api/", include("api.urls")),
     path("", include("jackmathews.urls")),
 ]
 

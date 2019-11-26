@@ -46,10 +46,7 @@ INSTALLED_APPS = [
     "health_check",
     "health_check.db",
     "jackmathews",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -106,22 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 SITE_ID = 1
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
