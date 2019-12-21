@@ -194,3 +194,31 @@ class S3ObjectMetadata(View):
 
         response.update(meta)
         return JsonResponse(response)
+
+
+class Portfolio(View):
+    def get(self, request, **kwargs):
+        # get json list of all portfolio items
+        pass
+
+
+class PortfolioItem(View):
+    def get(self, request, **kwargs):
+        pass
+
+
+class PortfolioItemEdit(View):
+    def get(self, request, **kwargs):
+        # given an item/id allow fields to beupdated
+        pass
+
+    def post(self, request, **kwargs):
+        pass
+
+
+class PortfolioItemCreate(View):
+    def get(self, request, **kwargs):
+        pass
+
+    def post(self, request, **kwargs):
+        pass
