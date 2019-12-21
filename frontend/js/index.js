@@ -35,3 +35,6 @@ $("#content").click(function() {
 $(window).scroll(function() {
   if($("#burger").hasClass("cross")) hideMenu();
 });
+
+// https://github.com/dixonandmoe/rellax
+var rellax = new Rellax('.relax');

@@ -21,22 +21,34 @@ All code, images, and content are the intellectual property of Charlie Mathews (
 
 <div id="fadeout"></div>
 
-<div id="column">
-    <header>
-      <div id="logo" class="clear">
-        <div id="picture_wrapper"><div id="picture_border"><div id="picture"></div></div></div>
-        <div id="title"><span>JACK MATHEWS</span></div>
-      </div>
-      {% include "includes/nav.html" %}
-      {% include "includes/social.html" %}
-    </header>
+<div id="showreel" class="clear relax" data-rellax-speed="-8">
 
-    {% block pagecontent %}
-    Oops! You forgot to include a template file.
-    {% endblock %}
+  <div class="player">
+    <iframe src="//player.vimeo.com/video/324997791?api=1&background=1" frameBorder="0"></iframe>
+  </div>
 
-    {% include "includes/footer.html" %}
-</div> <!-- end of #column -->
+  <header>
+    <div id="logo" class="clear">
+      <div id="picture_wrapper"><div id="picture_border"><div id="picture"></div></div></div>
+      <div id="title"><span>JACK MATHEWS</span></div>
+    </div>
+    {% include "includes/nav.html" %}
+    {% include "includes/social.html" %}
+  </header>
+</div>
+
+
+<div id="post_showreel" class="clear">
+  <div class="column">
+      {% block pagecontent %}
+      Oops! You forgot to include a template file.
+      {% endblock %}
+  </div> <!-- end of #column -->
+
+  <div class="column">
+      {% include "includes/footer.html" %}
+  </div> <!-- end of #column -->
+</div> <!-- end of #post_showreel -->
 
 {% include "includes/post_scripts.html" %}
 {% block additional_post_scripts %}{% endblock %}

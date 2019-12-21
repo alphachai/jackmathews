@@ -40,38 +40,38 @@
 		margin: 0;
 	}
 
-	#column {
+	.column {
 		margin: 0 auto;
 		width: 900px;
 	}
 
 	#fadeout {
-	    position: fixed;
+    position: fixed;
 		z-index: 2;
-	    bottom: 0em;
-		opacity: 1;
-	    width: 100%;
-	    height: 4em;
-	    background: -webkit-linear-gradient(
-	        rgba(255, 255, 255, 0) 0%,
-	        rgba(255, 255, 255, 1) 100%
-	    );
-	    background-image: -moz-linear-gradient(
-	        rgba(255, 255, 255, 0) 0%,
-	        rgba(255, 255, 255, 1) 100%
-	    );
-	    background-image: -o-linear-gradient(
-	        rgba(255, 255, 255, 0) 0%,
-	        rgba(255, 255, 255, 1) 100%
-	    );
-	    background-image: linear-gradient(
-	        rgba(255, 255, 255, 0) 0%,
-	        rgba(255, 255, 255, 1) 100%
-	    );
-	    background-image: -ms-linear-gradient(
-	        rgba(255, 255, 255, 0) 0%,
-	        rgba(255, 255, 255, 1) 100%
-	    );
+    bottom: 0em;
+		opacity: 0;
+    width: 100%;
+    height: 4em;
+    background: -webkit-linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -moz-linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -o-linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -ms-linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
 	}
 
 	.hidden {
@@ -132,66 +132,111 @@
 		}
 	}
 
+  // Showreel
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  #showreel {
+    // https://stackoverflow.com/a/37309881
+    // https://jameshfisher.com/2017/08/30/how-do-i-make-a-full-width-iframe/
+    // https://slicejack.com/fullscreen-html5-video-background-css/
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+
+    .player {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+
+      iframe {
+        width: 100vw;
+        height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+        min-height: 100vh;
+        min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform_translate(-50%, -50%);
+      }
+
+      .overlay {
+        position: absolute;
+        z-index: -9;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  #post_showreel {
+    background-color: #FFFFFF;
+  }
+
 	// Header / Title
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	header {
-		padding: 150px 0 0;
-		width: auto;
-		clear: both;
-
-		& #logo {
-			// display: block;
-			// float: left;
-			// z-index: 20;
-			// position: relative;
-			// text-decoration: none;
-			width: 100%;
-		}
-
-		$titlePhoto_height: 155px;
-		$titlePhoto_borderWidth: 2px;
-		$titlePhoto_padding: 5px;
-		$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
-
-		& #picture_wrapper {
-			width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
-			clear: both;
-			margin: 0 auto;
-		}
-
-		& #picture_border {
-			padding: $titlePhoto_padding;
-			@include border-radius($titlePhoto_height);
-			z-index: 15;
-			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder;
-		}
-
-		& #picture {
-			@include border-radius($titlePhoto_height/2);
-			width: $titlePhoto_backgroundDiameter;
-			height: $titlePhoto_backgroundDiameter;
-			background-color: $color_titlePhoto;
-			background: url('../avatar.png');
-			background-size: cover;
-		}
-
-    & #title {
-      clear: both;
-      width: 100%;
-			margin: 30px auto 0;
-      text-align: center;
-
-      & span {
-  			color: $color_title;
-  			// font-family: 'Helvetica Neue', sans-serif;
-  			font-family: 'Barlow', sans-serif;
-  			font-size: 32px;
-  			font-weight: 600;
-  			// letter-spacing: 0.03em;
-  			// z-index: 15;
-  		}
-    }
-	}
+	// header {
+	// 	padding: 150px 0 0;
+	// 	width: auto;
+	// 	clear: both;
+  //
+	// 	& #logo {
+	// 		// display: block;
+	// 		// float: left;
+	// 		// z-index: 20;
+	// 		// position: relative;
+	// 		// text-decoration: none;
+	// 		width: 100%;
+	// 	}
+  //
+	// 	$titlePhoto_height: 155px;
+	// 	$titlePhoto_borderWidth: 2px;
+	// 	$titlePhoto_padding: 5px;
+	// 	$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
+  //
+	// 	& #picture_wrapper {
+	// 		width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
+	// 		clear: both;
+	// 		margin: 0 auto;
+	// 	}
+  //
+	// 	& #picture_border {
+	// 		padding: $titlePhoto_padding;
+	// 		@include border-radius($titlePhoto_height);
+	// 		z-index: 15;
+	// 		border: $titlePhoto_borderWidth solid $color_titlePhotoBorder;
+	// 	}
+  //
+	// 	& #picture {
+	// 		@include border-radius($titlePhoto_height/2);
+	// 		width: $titlePhoto_backgroundDiameter;
+	// 		height: $titlePhoto_backgroundDiameter;
+	// 		background-color: $color_titlePhoto;
+	// 		background: url('../avatar.png');
+	// 		background-size: cover;
+	// 	}
+  //
+  //   & #title {
+  //     clear: both;
+  //     width: 100%;
+	// 		margin: 30px auto 0;
+  //     text-align: center;
+  //
+  //     & span {
+  // 			color: $color_title;
+  // 			// font-family: 'Helvetica Neue', sans-serif;
+  // 			font-family: 'Barlow', sans-serif;
+  // 			font-size: 32px;
+  // 			font-weight: 600;
+  // 			// letter-spacing: 0.03em;
+  // 			// z-index: 15;
+  // 		}
+  //   }
+	// }
 
 	// Social
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -378,7 +423,7 @@
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 @media (max-width: 900px)
 {
-	#column {
+	.column {
 		width: 100%;
 	}
 
@@ -421,7 +466,7 @@
 		}
 	}
 
-	#column {
+	.column {
 		width: auto;
 		padding: 0 15px;
 	}
