@@ -585,6 +585,73 @@ $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
 	}
 }
 
+@media (max-width: 560px)
+{
+
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+
+    $titlePhoto_overall_height: 60px;
+    $titlePhoto_borderWidth: 0px;
+    $titlePhoto_padding: 0px;
+    $titlePhoto_height: $titlePhoto_overall_height - (($titlePhoto_borderWidth + $titlePhoto_padding)*2);
+    $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
+
+    & nav {
+      height: $titlePhoto_overall_height ;
+      margin-top: 5vh;
+
+      & #left {
+        margin-left: 5vw;
+      }
+
+      & #right {
+        margin-right: 5vw;
+      }
+
+      & #picture_wrapper {
+        width: $titlePhoto_overall_height;
+      }
+
+      & #picture_border {
+        padding: $titlePhoto_padding;
+        @include border-radius($titlePhoto_height);
+        border: $titlePhoto_borderWidth solid $color_titlePhotoBorder_dark;
+      }
+
+      & #picture {
+        @include border-radius($titlePhoto_backgroundDiameter);
+        width: $titlePhoto_height;
+        height: $titlePhoto_height;
+      }
+
+      & #menu {
+
+        .menu_item {
+        }
+      }
+    }
+
+    & #welcome {
+      margin-bottom: 15vh;
+
+      & #title {
+        font-size: 45px;
+      }
+
+      & #title_tagline {
+        font-size: 15px;
+      }
+    }
+  }
+
+}
+
 @media (max-width: 450px)
 {
 	article .body > p {
