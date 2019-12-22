@@ -1,8 +1,8 @@
 // handle loading animation
 $(document).ready(function($) {
-	$("#preloader-wrap").animate({opacity: 0}, 400);
-	setTimeout(function() {$("#loading").animate({opacity: 0}, 200);}, 400);
-	setTimeout(function() {$("#loading").remove();}, 600);
+	$("#preloader-wrap").animate({opacity: 0}, 800);
+	setTimeout(function() {$("#loading").animate({opacity: 0}, 600);}, 400);
+	setTimeout(function() {$("#loading").remove();}, 1200);
 });
 
 function showMenu() {

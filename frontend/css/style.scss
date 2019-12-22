@@ -5,6 +5,7 @@
 @import url('http://fonts.googleapis.com/css?family=PT+Serif');
 @import url('http://fonts.googleapis.com/css?family=Barlow');
 
+
 // SOURCE: https://css-tricks.com/snippets/css/clear-fix/
 .clear:after {
   content: "";
@@ -141,17 +142,18 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -10;
 
-    .player {
+    & .player {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       overflow: hidden;
+      z-index: -10;
 
-      iframe {
+      & iframe {
         width: 100vw;
         height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
         min-height: 100vh;
@@ -161,20 +163,97 @@
         left: 50%;
         @include transform_translate(-50%, -50%);
       }
+    }
 
-      .overlay {
-        position: absolute;
-        z-index: -9;
-        left: 0;
-        top: 0;
+    header {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      color: #FFFFFF;
+
+      & nav {
         width: 100%;
-        height: 100%;
+        height: 80px;
+        margin-top: 10vh;
+
+        & #left {
+          float: left;
+          height: 50px;
+          margin-left: 10vw;
+        }
+
+        & #right {
+          float: right;
+          height: 50px;
+          margin-right: 10vw;
+        }
+
+        $titlePhoto_height: 80px;
+        $titlePhoto_borderWidth: 1px;
+        $titlePhoto_padding: 5px;
+        $titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
+
+    		& #picture_wrapper {
+    			width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
+    			clear: both;
+    			margin: 0 auto;
+    		}
+
+    		& #picture_border {
+    			padding: $titlePhoto_padding;
+    			@include border-radius($titlePhoto_height);
+    			z-index: 15;
+    			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder_dark;
+    		}
+
+    		& #picture {
+    			@include border-radius($titlePhoto_height/2);
+    			width: $titlePhoto_backgroundDiameter;
+    			height: $titlePhoto_backgroundDiameter;
+    			background-color: $color_titlePhotoBorder_dark;
+    			background: url('../avatar.png');
+    			background-size: cover;
+    		}
+      }
+
+      & #welcome {
+        width: 100%;
+        margin-top: 50vh;
+
+        & #title {
+          //clear: both;
+          //width: 100%;
+      		//margin: 30px auto 0;
+          text-align: center;
+          font-family: 'Barlow', sans-serif;
+          font-size: 32px;
+          font-weight: 600;
+
+          // & span {
+      		// 	//color: $color_title;
+      		// 	// font-family: 'Helvetica Neue', sans-serif;
+      		// 	font-family: 'Barlow', sans-serif;
+      		// 	font-size: 32px;
+      		// 	font-weight: 600;
+      		// 	// letter-spacing: 0.03em;
+      		// 	// z-index: 15;
+      		// }
+        }
+
+        & #title_tagline {
+          text-align: center;
+          font-family: 'Barlow', sans-serif;
+          // font-size: 32px;
+          // font-weight: 600;
+        }
+
       }
     }
   }
 
   #post_showreel {
     background-color: #FFFFFF;
+    z-index: 100;
   }
 
 	// Header / Title
@@ -270,7 +349,7 @@
 
   			a {
   				display: inline-block;
-  				color: #000;
+  				color: #FFF;
 
   				.icon {
   					max-width: 100%;
@@ -280,10 +359,11 @@
   				}
 
   				&:hover {
-  					background-color: rgba(#fff, .7);
+  					//background-color: rgba(#fff, .7);
 
   					.icon {
-  						color: #DDD;
+  						//color: #DDD;
+              color: #FFF;
   					}
   					.icon_youtube {
   						color: $color_youtube;
@@ -455,16 +535,16 @@
 
 @media (max-width: 600px)
 {
-	header {
-		padding: 20px 0 0;
-
-		& #title {
-			//font-size: 20px;
-			//margin-left: 15px;
-			//margin-top: 11px;
-			//border-bottom: none;
-		}
-	}
+	// header {
+	// 	padding: 20px 0 0;
+  //
+	// 	& #title {
+	// 		//font-size: 20px;
+	// 		//margin-left: 15px;
+	// 		//margin-top: 11px;
+	// 		//border-bottom: none;
+	// 	}
+	// }
 
 	.column {
 		width: auto;
