@@ -3,7 +3,14 @@
 @import 'colors';
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700');
 @import url('http://fonts.googleapis.com/css?family=PT+Serif');
-@import url('http://fonts.googleapis.com/css?family=Barlow');
+@import url('http://fonts.googleapis.com/css?family=Barlow:400,500,600,700,800');
+
+
+$titlePhoto_overall_height: 100px;
+$titlePhoto_borderWidth: 1px;
+$titlePhoto_padding: 3px;
+$titlePhoto_height: $titlePhoto_overall_height - (($titlePhoto_borderWidth + $titlePhoto_padding)*2);
+$titlePhoto_backgroundDiameter: $titlePhoto_height/2;
 
 
 // SOURCE: https://css-tricks.com/snippets/css/clear-fix/
@@ -48,7 +55,7 @@
 
 	#fadeout {
     position: fixed;
-		z-index: 2;
+		z-index: 200;
     bottom: 0em;
 		opacity: 0;
     width: 100%;
@@ -95,7 +102,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 200;
+		z-index: 300;
 		background: $color_loadingBackground;
 	}
 
@@ -142,6 +149,10 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    z-index: -2;
+    position: absolute;
+    top: 0;
+    left: 0 ;
 
     & .player {
       position: absolute;
@@ -151,7 +162,7 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
-      z-index: -10;
+      //z-index: -10;
 
       & iframe {
         width: 100vw;
@@ -164,158 +175,148 @@
         @include transform_translate(-50%, -50%);
       }
     }
+  }
 
-    header {
-      position: relative;
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+
+    & nav {
       width: 100%;
-      height: 100%;
-      color: #FFFFFF;
+      //height: 80px;
+      height: $titlePhoto_overall_height ;
+      margin-top: 10vh;
 
-      & nav {
-        width: 100%;
-        height: 80px;
-        margin-top: 10vh;
-
-        & #left {
-          float: left;
-          height: 50px;
-          margin-left: 10vw;
-        }
-
-        & #right {
-          float: right;
-          height: 50px;
-          margin-right: 10vw;
-        }
-
-        $titlePhoto_height: 80px;
-        $titlePhoto_borderWidth: 1px;
-        $titlePhoto_padding: 5px;
-        $titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
-
-    		& #picture_wrapper {
-    			width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
-    			clear: both;
-    			margin: 0 auto;
-    		}
-
-    		& #picture_border {
-    			padding: $titlePhoto_padding;
-    			@include border-radius($titlePhoto_height);
-    			z-index: 15;
-    			border: $titlePhoto_borderWidth solid $color_titlePhotoBorder_dark;
-    		}
-
-    		& #picture {
-    			@include border-radius($titlePhoto_height/2);
-    			width: $titlePhoto_backgroundDiameter;
-    			height: $titlePhoto_backgroundDiameter;
-    			background-color: $color_titlePhotoBorder_dark;
-    			background: url('../avatar.png');
-    			background-size: cover;
-    		}
+      & #left {
+        float: left;
+        margin-left: 15vw;
+        height: 100%;
       }
 
-      & #welcome {
-        width: 100%;
-        margin-top: 50vh;
-
-        & #title {
-          //clear: both;
-          //width: 100%;
-      		//margin: 30px auto 0;
-          text-align: center;
-          font-family: 'Barlow', sans-serif;
-          font-size: 32px;
-          font-weight: 600;
-
-          // & span {
-      		// 	//color: $color_title;
-      		// 	// font-family: 'Helvetica Neue', sans-serif;
-      		// 	font-family: 'Barlow', sans-serif;
-      		// 	font-size: 32px;
-      		// 	font-weight: 600;
-      		// 	// letter-spacing: 0.03em;
-      		// 	// z-index: 15;
-      		// }
-        }
-
-        & #title_tagline {
-          text-align: center;
-          font-family: 'Barlow', sans-serif;
-          // font-size: 32px;
-          // font-weight: 600;
-        }
-
+      & #right {
+        float: right;
+        margin-right: 15vw;
+        height: 100%;
       }
+
+      & #picture_wrapper {
+        width: $titlePhoto_overall_height;
+        clear: both;
+        margin: 0 auto;
+      }
+
+      & #picture_border {
+        padding: $titlePhoto_padding;
+        @include border-radius($titlePhoto_height);
+        //z-index: 15;
+        border: $titlePhoto_borderWidth solid $color_titlePhotoBorder_dark;
+      }
+
+      & #picture {
+        @include border-radius($titlePhoto_backgroundDiameter);
+        width: $titlePhoto_height;
+        height: $titlePhoto_height;
+        background-color: $color_titlePhotoBorder_dark;
+        background: url('../avatar.png');
+        background-size: cover;
+      }
+
+      & #menu {
+        height: 100%;
+        @include transform_translate(0, 50%);
+
+        a {
+          text-decoration: none;
+          color: #000;
+        }
+
+        & ul {
+          padding: 0;
+          margin: 0;
+        }
+
+        & ul > li {
+            display: inline-block;
+            @include transform_translate(0, -50%);
+        }
+
+        .menu_item {
+          display: block;
+          background-color: rgba(255, 255, 255, 0);
+          padding: 10px 15px;
+          margin-left: 9px;
+
+          font-family: 'Barlow', sans-serif;
+          text-transform:uppercase;
+          font-weight: 500;
+          // letter-spacing: 2pt;
+          color: #FFF;
+
+          &:hover {
+            color: #000;
+            background-color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+    }
+
+    & nav:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    & #welcome {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 30vh;
+      width: 100%;
+      // margin-top: 50vh;
+
+      & #title {
+        //clear: both;
+        //width: 100%;
+        //margin: 30px auto 0;
+        text-align: center;
+        font-family: 'Barlow', sans-serif;
+        font-size: 67px;
+        font-weight: 600;
+
+        /* offset-x | offset-y | blur-radius | color */
+        //text-shadow: 0px 0px 20px black;
+
+        // & span {
+        // 	//color: $color_title;
+        // 	// font-family: 'Helvetica Neue', sans-serif;
+        // 	font-family: 'Barlow', sans-serif;
+        // 	font-size: 32px;
+        // 	font-weight: 600;
+        // 	// letter-spacing: 0.03em;
+        // 	// z-index: 15;
+        // }
+      }
+
+      & #title_tagline {
+        text-align: center;
+        font-family: 'Barlow', sans-serif;
+        font-size: 21px;
+        // font-weight: 600;
+        //text-shadow: 0px 0px 20px black;
+        //margin-top: 4px ;
+      }
+
     }
   }
 
   #post_showreel {
     background-color: #FFFFFF;
     z-index: 100;
+    margin-top: 100vh;
   }
-
-	// Header / Title
-	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	// header {
-	// 	padding: 150px 0 0;
-	// 	width: auto;
-	// 	clear: both;
-  //
-	// 	& #logo {
-	// 		// display: block;
-	// 		// float: left;
-	// 		// z-index: 20;
-	// 		// position: relative;
-	// 		// text-decoration: none;
-	// 		width: 100%;
-	// 	}
-  //
-	// 	$titlePhoto_height: 155px;
-	// 	$titlePhoto_borderWidth: 2px;
-	// 	$titlePhoto_padding: 5px;
-	// 	$titlePhoto_backgroundDiameter: ($titlePhoto_height - ($titlePhoto_borderWidth + $titlePhoto_padding));
-  //
-	// 	& #picture_wrapper {
-	// 		width: $titlePhoto_height + ($titlePhoto_borderWidth + $titlePhoto_padding);
-	// 		clear: both;
-	// 		margin: 0 auto;
-	// 	}
-  //
-	// 	& #picture_border {
-	// 		padding: $titlePhoto_padding;
-	// 		@include border-radius($titlePhoto_height);
-	// 		z-index: 15;
-	// 		border: $titlePhoto_borderWidth solid $color_titlePhotoBorder;
-	// 	}
-  //
-	// 	& #picture {
-	// 		@include border-radius($titlePhoto_height/2);
-	// 		width: $titlePhoto_backgroundDiameter;
-	// 		height: $titlePhoto_backgroundDiameter;
-	// 		background-color: $color_titlePhoto;
-	// 		background: url('../avatar.png');
-	// 		background-size: cover;
-	// 	}
-  //
-  //   & #title {
-  //     clear: both;
-  //     width: 100%;
-	// 		margin: 30px auto 0;
-  //     text-align: center;
-  //
-  //     & span {
-  // 			color: $color_title;
-  // 			// font-family: 'Helvetica Neue', sans-serif;
-  // 			font-family: 'Barlow', sans-serif;
-  // 			font-size: 32px;
-  // 			font-weight: 600;
-  // 			// letter-spacing: 0.03em;
-  // 			// z-index: 15;
-  // 		}
-  //   }
-	// }
 
 	// Social
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
