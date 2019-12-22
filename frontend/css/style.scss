@@ -7,8 +7,8 @@
 
 
 $titlePhoto_overall_height: 100px;
-$titlePhoto_borderWidth: 1px;
-$titlePhoto_padding: 3px;
+$titlePhoto_borderWidth: 4px;
+$titlePhoto_padding: 0px;
 $titlePhoto_height: $titlePhoto_overall_height - (($titlePhoto_borderWidth + $titlePhoto_padding)*2);
 $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
 
@@ -51,35 +51,6 @@ $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
 	.column {
 		margin: 0 auto;
 		width: 900px;
-	}
-
-	#fadeout {
-    position: fixed;
-		z-index: 200;
-    bottom: 0em;
-		opacity: 0;
-    width: 100%;
-    height: 4em;
-    background: -webkit-linear-gradient(
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
-    background-image: -moz-linear-gradient(
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
-    background-image: -o-linear-gradient(
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
-    background-image: linear-gradient(
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
-    background-image: -ms-linear-gradient(
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
 	}
 
 	.hidden {
@@ -246,15 +217,16 @@ $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
 
         .menu_item {
           display: block;
-          background-color: rgba(255, 255, 255, 0);
+          //background-color: rgba(255, 255, 255, 0.5);
           padding: 10px 15px;
           margin-left: 9px;
 
           font-family: 'Barlow', sans-serif;
           text-transform:uppercase;
-          font-weight: 500;
+          font-weight: 600;
           // letter-spacing: 2pt;
           color: #FFF;
+          border: 2px solid rgba(255, 255, 255, 0.1);
 
           &:hover {
             color: #000;
@@ -274,6 +246,7 @@ $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
       position: absolute;
       bottom: 0;
       margin-bottom: 30vh;
+      // margin-top: 30vh;
       width: 100%;
       // margin-top: 50vh;
 
@@ -633,6 +606,7 @@ $titlePhoto_backgroundDiameter: $titlePhoto_height/2;
       & #menu {
 
         .menu_item {
+          margin-left: 2px;
         }
       }
     }
