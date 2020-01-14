@@ -111,6 +111,14 @@ remote_shell:
 	heroku run python manage.py shell
 .PHONY: remote_shell
 
+remote_shell_staging:
+	heroku run --remote staging python manage.py shell
+.PHONY: remote_shell_staging
+
+remote_shell_production:
+	heroku run --remote production python manage.py shell
+.PHONY: remote_shell_production
+
 remote_dbshell:
 	heroku run python manage.py dbshell
 .PHONY: remote_dbshell
