@@ -40,3 +40,22 @@ $(window).scroll(function() {
 
 // https://github.com/dixonandmoe/rellax
 var rellax = new Rellax('.relax');
+
+// https://github.com/benceg/vanilla-modal
+var modal = new VanillaModal.default();
+
+// mobileExp = new RegExp('Android|webOS|iPhone|iPad|' +
+// 											 'BlackBerry|Windows Phone|'  +
+// 											 'Opera Mini|IEMobile|Mobile' ,
+// 											 'i');
+//
+// if (testExp.test(navigator.userAgent)) {
+// 	document.getElementById("device").innerHTML = "Your device is a Mobile Device";
+// } else {
+// 	document.getElementById("device").innerHTML = "Your device is NOT a Mobile Device";
+// }
+//
+// $(".portfolio-item.youtube").click(function(){
+//   var child = document.createElement('div');
+// 	child.className = "modal";
+// });

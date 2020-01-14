@@ -135,7 +135,7 @@ class S3Object(View):
             raise
 
         if params["redirect"]:
-            return HttpResponseRedirect(url)
+            return HttpResponseRedirect(response["url"])
 
         response["took"] = timer.stop()
         return JsonResponse(response)

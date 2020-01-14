@@ -3,11 +3,30 @@
 
 {% block pagecontent %}
 <section class="content grid">
-    <div class="item"><a href="https://www.instagram.com/p/ByC3zA9hedP/"><img src="static/uploads/bali.jpg"></a></div>
+    <!-- <div class="item"><a href="https://www.instagram.com/p/ByC3zA9hedP/"><img src="static/uploads/bali.jpg"></a></div>
     <div class="item"><a href="https://www.youtube.com/watch?v=cKD5sqCcBqU"><img src="static/uploads/landshark_promo.jpg"></a></div>
     <div class="item"><a href="https://www.youtube.com/watch?v=bpDBBaoLY4Y"><img src="static/uploads/landshark1.jpg"></a></div>
-    <div class="item"><a href="https://www.youtube.com/watch?v=Vdk-zDCGXfc"><img src="static/uploads/landshark2.jpg"></a></div>
+    <div class="item"><a href="https://www.youtube.com/watch?v=Vdk-zDCGXfc"><img src="static/uploads/landshark2.jpg"></a></div> -->
+    {% for p in portfolio %}
+    {% if p.service.name == "Youtube" %}
+    <div class="item"><a class="portfolio-item youtube" href="#modal-{{ p.id }}" data-modal-open><img src="{{ p.thumbnail.url }}"></a></div>
+    <div id="modal-{{ p.id }}" style="display:none">
+      <iframe width="100%" height="100%" frameborder="0" style="overflow:hidden" scrolling="no"
+      src="https://www.youtube.com/embed/{{ p.url }}?modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&color=white&disablekb=1">
+      </iframe>
+    </div>
+    {% else %}
+    <div class="item"><a class="portfolio-item" href="{{ p.url }}"><img src="{{ p.thumbnail.url }}"></a></div>
+    {% endif %}
+    {% endfor %}
 </section>
+
+<div class="modal" style="width:100%;height:100%">
+  <div class="modal-inner" style="width:100%;height:100%;overflow:hidden;overflow-y:hidden">
+    <span data-modal-close>&times;</span>
+    <div class="modal-content" style="width:100%;height:100%"></div>
+  </div>
+</div>
 {% endblock %}
 
 {% block additional_post_scripts %}

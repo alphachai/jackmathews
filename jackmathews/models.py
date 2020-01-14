@@ -1,19 +1,20 @@
 from django.db import models
+from django.conf import settings
 
 
 class PortfolioItem(models.Model):
-    thumbnail_url = models.TextField()
-    title = models.TextField()
-    date = models.DateField()
-    external_link = models.TextField()
+    title = models.TextField(blank=False)
+    date = models.DateField(blank=False)
+    url = models.TextField(blank=False)
+    thumbnail = models.ImageField(upload_to=f"{settings.AWS_STORAGE_BUCKET_NAME}_{settings.STAGE}", blank=False)
+    service = models.ForeignKey("Service", on_delete=models.CASCADE, blank=False)
+
+    def __str__(self):
+        return f"{self.title} - {self.service.name} - {self.date}"
 
 
-class MediaType(models.Model):
-    name = models.TextField()  # (youtube, vimeo, external)
+class Service(models.Model):
+    name = models.TextField()  # (youtube, vimeo, instagram, external)
 
-
-class Media(models.Model):
-    portfolio_item = models.ForeignKey("PortfolioItem", on_delete=models.CASCADE)
-    media_type = models.ForeignKey("MediaType", on_delete=models.CASCADE)
-    url = models.URLField()
-    object_id = models.TextField()
+    def __str__(self):
+        return f"{self.name}"

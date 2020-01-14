@@ -63,6 +63,10 @@ run: env staticfiles
 	$(WITH_PIPENV) heroku local web
 .PHONY: run
 
+shell: env
+  heroku local:run ./manage.py shell
+.PHONY: shell
+
 lint: python/lint
 .PHONY: lint
 

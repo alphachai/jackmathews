@@ -8,9 +8,12 @@ python_version = "3.6"
 
 [packages]
 boto3 = "*"
+django = "*"
 django-health-check = "*"
 django-heroku = "*"
+django-storages = "*"
 gunicorn = "*"
+pillow = "*"
 psycopg2-binary = "*"
 python-decouple = "*"
 requests = "*"
